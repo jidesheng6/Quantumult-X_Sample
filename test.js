@@ -761,8 +761,10 @@ function GetPublicKey()
             method:"GET"
         }
     $task.fetch(RequestPar).then(function(response){
-        console.log(response.headers);
-        console.log(typeof(response.headers));
+        var RawCookieString = unescape(response.headers["Set-Cookie"]);
+        PublickKeyStr = RegexStr.exec(RawCookieString)[0];
+        $prefs.setValueForKey(PublickKeyStr,"PublicKey");
+        console.log($prefs.valueForKey("PublicKey"))
         $done();
     })
 } 
