@@ -786,8 +786,9 @@ function Sign_Main()
             url:SignUrl,
             method:"GET",
             headers:{"cookie":UserCookies}
-        }
-    $task.fetch(RequestObj).then(function(response){
+        };
+    console.log(RequestObj);
+   /* $task.fetch(RequestObj).then(function(response){
         const IvString = "6di50aH901duea7d";
         //var ResponeCookie = response.headers["Set-Cookie"];
         //var DealCookie =unescape(RegexStr.exec(ResponeCookie)[0]);
@@ -795,7 +796,7 @@ function Sign_Main()
         //var DyamicKey = $prefs.valueForKey("SecKey");
         console.log(response.headers);
         $done();
-    })
+    })*/
 }
 Sign_Main()
 
