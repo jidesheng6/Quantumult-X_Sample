@@ -793,7 +793,7 @@ function Sign_Main()
         var DealCookie =unescape(RegexStr.exec(ResponeCookie)[0]);
         GetSecKey(DealCookie);
         var DyamicKey = $prefs.valueForKey("SecKey");
-        var DecryptResponeRaw = DecryptRespone(DyamicKey,IvString,data);
+        var DecryptResponeRaw = DecryptRespone(DyamicKey,IvString,response.body);
         var ResponeDeal = unescape(DecryptResponeRaw.replace(/\\u/g,'%u'));
         //$prefs.setValueForKey(ResponeDeal,"ReturnStr");
         var ContentLength = response.headers["Content-Length"];
