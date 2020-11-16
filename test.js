@@ -794,6 +794,7 @@ function Sign_Main()
         GetSecKey(DealCookie);
         var DyamicKey = $prefs.valueForKey("SecKey");
         console.log(DyamicKey);
+        $done();
     })
 }
 Sign_Main()
