@@ -776,4 +776,4 @@ function GetSecKey(RawCookieString)
     $prefs.setValueForKey(Key,"SecKey");
     console.log($prefs.valueForKey("SecKey"));
 }
-GetSecKey(GetPublicKey())
+GetSecKey($prefs.valueForKey("PublicKey"))
