@@ -811,6 +811,6 @@ function Sign_Main()
         $done();
     })
     console.log("\n\n\n原始数据包如下(已解密)：\n\n"+$prefs.valueForKey("ReturnStr"))
-    })
+}
 Sign_Main()
 
