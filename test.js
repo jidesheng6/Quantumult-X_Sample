@@ -788,12 +788,12 @@ function Sign_Main()
             headers:{"cookie":UserCookies}
         };
     console.log(RequestObj);
-   /* $task.fetch(RequestObj).then(function(response){
+   $task.fetch(RequestObj).then(function(response){
         const IvString = "6di50aH901duea7d";
-        //var ResponeCookie = response.headers["Set-Cookie"];
-        //var DealCookie =unescape(RegexStr.exec(ResponeCookie)[0]);
-        //GetSecKey(DealCookie);
-        //var DyamicKey = $prefs.valueForKey("SecKey");
+        var ResponeCookie = response.headers["Set-Cookie"];
+        var DealCookie =unescape(RegexStr.exec(ResponeCookie)[0]);
+        GetSecKey(DealCookie);
+        var DyamicKey = $prefs.valueForKey("SecKey");
         console.log(response.headers);
         $done();
     })*/
