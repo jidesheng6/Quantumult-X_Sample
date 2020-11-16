@@ -764,8 +764,16 @@ function GetPublicKey()
         var RawCookieString = unescape(response.headers["Set-Cookie"]);
         PublickKeyStr = RegexStr.exec(RawCookieString)[0];
         $prefs.setValueForKey(PublickKeyStr,"PublicKey");
-        console.log($prefs.valueForKey("PublicKey"))
+        //console.log($prefs.valueForKey("PublicKey"))
         $done();
     })
 } 
-GetPublicKey()
+function GetSecKey(RawCookieString)
+{
+    var String0 =  RawCookieString.substring(0,5);
+    var String1 = RawCookieString.substring(RawCookieString.length-11,RawCookieString.length);
+    var Key = String0 + String1;
+    $prefs.setValueForKey(Key,"SecKey");
+    console.log($prefs.valueForKey("SecKey"));
+}
+GetSecKey(GetPublicKey())
