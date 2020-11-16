@@ -795,7 +795,7 @@ function Sign_Main()
         var DyamicKey = $prefs.valueForKey("SecKey");
         var DecryptResponeRaw = DecryptRespone(DyamicKey,IvString,data);
         var ResponeDeal = unescape(DecryptResponeRaw.replace(/\\u/g,'%u'));
-        $prefs.setValueForKey(ResponeDeal,"ReturnStr");
+        //$prefs.setValueForKey(ResponeDeal,"ReturnStr");
         var ContentLength = response.headers["Content-Length"];
         var MessageRegex = /"message":".+?(?=")/;
         var MessageNotify = MessageRegex.exec(ResponeDeal)[0].replace('"message":"',"");
@@ -808,9 +808,10 @@ function Sign_Main()
         {
             $notify("腕表之家-Cookie正常",MessageNotify,"")
         }
+        console.log("\n\n\n原始数据包如下(已解密)：\n\n"+ResponeDeal)
         $done();
     })
-    console.log("\n\n\n原始数据包如下(已解密)：\n\n"+$prefs.valueForKey("ReturnStr"))
+    
 }
 Sign_Main()
 
