@@ -799,6 +799,7 @@ function Sign_Main()
         var ContentLength = response.headers["Content-Length"];
         var MessageRegex = /"message":".+?(?=")/;
         var MessageNotify = MessageRegex.exec(ResponeDeal)[0].replace('"message":"',"");
+         $notify("腕表之家","ces","");
         console.log("\n腕表之家-签到调试信息_响应体数据大小:"+ContentLength);
         if(ContentLength<200)
         {
@@ -806,9 +807,9 @@ function Sign_Main()
         }
         else
         {
-            $notify("腕表之家-Cookie正常",MessageNotify,"")
+            $notify("腕表之家-Cookie正常",MessageNotify,"");
         }
-        console.log("\n\n\n原始数据包如下(已解密)：\n\n"+ResponeDeal)
+        console.log("\n\n\n原始数据包如下(已解密)：\n\n"+ResponeDeal);
         $done();
     })
     
