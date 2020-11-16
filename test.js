@@ -796,7 +796,7 @@ function Sign_Main()
         var DyamicKey = $prefs.valueForKey("SecKey");
         console.log(response.headers);
         $done();
-    })*/
+    })
 }
 Sign_Main()
 
