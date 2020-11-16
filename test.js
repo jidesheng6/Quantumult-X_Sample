@@ -1,2 +1,28 @@
-$notify("测试","测试_1","测试2")
-console.log("如果你看到这条消息，证明Quantumult X测试成功")
+/**
+ * @fileoverview Example to compose HTTP request
+ * and handle the response.
+ *
+ */
+
+const url = "https://example.com/";
+const method = "POST";
+const headers = {"Field": "test-header-param"};
+const data = {"info": "abc"};
+
+const myRequest = {
+    url: url,
+    method: method, // Optional, default GET.
+    headers: headers, // Optional.
+    body: JSON.stringify(data) // Optional.
+};
+
+$task.fetch(myRequest).then(response => {
+    // response.statusCode, response.headers, response.body
+    console.log(response.body);
+    $notify("Title", "Subtitle", response.body); // Success!
+    $done();
+}, reason => {
+    // reason.error
+    $notify("Title", "Subtitle", reason.error); // Error!
+    $done();
+});
