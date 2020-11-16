@@ -793,14 +793,7 @@ function Sign_Main()
         var DealCookie =unescape(RegexStr.exec(ResponeCookie)[0]);
         GetSecKey(DealCookie);
         var DyamicKey = $prefs.valueForKey("SecKey");
-        var DecryptResponeRaw = DecryptRespone(DyamicKey,IvString,data);
-        var ResponeDeal = unescape(DecryptResponeRaw.replace(/\\u/g,'%u'));
-        $prefs.setValueForKey(ResponeDeal,"ReturnStr");
-        var ContentLength = response.headers["Content-Length"];
-        var MessageRegex = /"message":".+?(?=")/;
-        var MessageNotify = MessageRegex.exec(ResponeDeal)[0].replace('"message":"',"");
-        console.log("\n腕表之家-签到调试信息_响应体数据大小:"+ContentLength);
-        $done()
+        console.log(DyamicKey);
     })
 }
 Sign_Main()
