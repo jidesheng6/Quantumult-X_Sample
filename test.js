@@ -774,6 +774,43 @@ function GetSecKey(RawCookieString)
     var String1 = RawCookieString.substring(RawCookieString.length-11,RawCookieString.length);
     var Key = String0 + String1;
     $prefs.setValueForKey(Key,"SecKey");
-    console.log($prefs.valueForKey("SecKey"));
+    //console.log($prefs.valueForKey("SecKey"));
 }
-GetSecKey($prefs.valueForKey("PublicKey"))
+function Sign_Main()
+{
+    var ReplaceKeyInfo = "userid=3718082;userkey=3a67875372083bedc70e58178ecbd8dc;";/*在这里替换为您自己的Cookie信息*/
+    var UserCookies = ReplaceKeyInfo+'publicKey='+$prefs.valueForKey("PublicKey")
+    var SignUrl = "https://ios.xbiao.com/apps/Xbiao/ios-Xbiao-7_6-iPhone8_1-750_1334/sign/today"
+    var RequestObj = 
+        {
+            url:SignUrl,
+            method:"GET",
+            headers:{"cookie":UserCookies}
+        }
+    $task.fetch(RequestObj).then(function(response){
+        const IvString = "6di50aH901duea7d";
+        var ResponeCookie = response.headers["Set-Cookie"];
+        var DealCookie =unescape(RegexStr.exec(ResponeCookie)[0]);
+        GetSecKey(DealCookie);
+        var DyamicKey = $prefs.valueForKey("SecKey");
+        var DecryptResponeRaw = DecryptRespone(DyamicKey,IvString,data);
+        var ResponeDeal = unescape(DecryptResponeRaw.replace(/\\u/g,'%u'));
+        $prefs.setValueForKey(ResponeDeal,"ReturnStr");
+        var ContentLength = response.headers["Content-Length"];
+        var MessageRegex = /"message":".+?(?=")/;
+        var MessageNotify = MessageRegex.exec(ResponeDeal)[0].replace('"message":"',"");
+        console.log("\n腕表之家-签到调试信息_响应体数据大小:"+ContentLength);
+        if(ContentLength<200)
+        {
+            $notify("腕表之家-Cookie异常","签到失败,您的Cookie可能已经过期,请更新Cookie后再试","");
+        }
+        else
+        {
+            $notify("腕表之家-Cookie正常",MessageNotify,"")
+        }
+        $done();
+    })
+    console.log("\n\n\n原始数据包如下(已解密)：\n\n"+$prefs.valueForKey("ReturnStr"))
+    })
+Sign_Main()
+
