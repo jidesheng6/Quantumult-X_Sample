@@ -4,6 +4,7 @@
  *
  */
 
+/*
 const url = "https://example.com/";
 const method = "POST";
 const headers = {"Field": "test-header-param"};
@@ -26,3 +27,15 @@ $task.fetch(myRequest).then(response => {
     $notify("Title", "Subtitle", reason.error); // Error!
     $done();
 });
+*/
+const test = 
+      {
+          url:"https://www.baidu.com",
+          method:"GET"
+      }
+$task.fetch(test).then(function(response)
+                       {
+    console.log(response.statusCode);
+    $notify("TEst","test","kkkkkkkkkkkkkkkkkkkkk");
+    $done()
+})
