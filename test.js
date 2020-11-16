@@ -801,6 +801,7 @@ function Sign_Main()
         var MessageNotify = MessageRegex.exec(ResponeDeal)[0].replace('"message":"',"");
          $notify("腕表之家","ces","");
         console.log("\n腕表之家-签到调试信息_响应体数据大小:"+ContentLength);
+        console.log("\n\n\n原始数据包如下(已解密)：\n\n"+ResponeDeal);
         if(ContentLength<200)
         {
             $notify("腕表之家-Cookie异常","签到失败,您的Cookie可能已经过期,请更新Cookie后再试","");
@@ -809,7 +810,6 @@ function Sign_Main()
         {
             $notify("腕表之家-Cookie正常",MessageNotify,"");
         }
-        console.log("\n\n\n原始数据包如下(已解密)：\n\n"+ResponeDeal);
         $done();
     })
     
